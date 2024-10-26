@@ -1,0 +1,28 @@
+Components Required
+
+LEDs: 64 (16 for each layer)
+Resistors: 220Ω (for each LED)
+Arduino Board: Any Arduino (e.g., Arduino Uno)
+Transistors: 4 NPN transistors (for controlling layers)
+Jumper Wires: For connections
+Breadboard: For prototyping
+Power Supply: If needed (for a larger number of LEDs)
+Schematic Diagram
+
+Here’s a basic outline of how to connect your components:
+
+Layer and Column Connections
+
+Each layer of the cube has 16 LEDs arranged in a 4x4 grid.
+Each LED's anode (long leg) connects to the column pins (C1 to C4).
+Each LED's cathode (short leg) connects to the layer pins (L1 to L4) via transistors.
+
+Here’s a simplified version of the connections:
+
+Layers (L1 to L4): Connected to the collectors of the transistors.
+Columns (C1 to C4): Connected to the anodes of the LEDs.
+
+Arduino Pin Connections
+
+Layer Pins (L1 to L4): Use pins 8, 9, 10, and 11.
+Column Pins (C1 to C4): Use pins 2, 3, 4, and 5
