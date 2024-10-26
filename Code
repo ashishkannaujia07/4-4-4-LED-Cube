@@ -1,0 +1,75 @@
+// Pin Definitions
+#define LAYER1 8
+#define LAYER2 9
+#define LAYER3 10
+#define LAYER4 11
+#define COL1 2
+#define COL2 3
+#define COL3 4
+#define COL4 5
+
+// 4x4x4 LED Cube data
+int cube[4][4][4]; // Create a 3D array for the cube
+
+void setup() {
+  // Set layer pins as outputs
+  pinMode(LAYER1, OUTPUT);
+  pinMode(LAYER2, OUTPUT);
+  pinMode(LAYER3, OUTPUT);
+  pinMode(LAYER4, OUTPUT);
+  
+  // Set column pins as outputs
+  pinMode(COL1, OUTPUT);
+  pinMode(COL2, OUTPUT);
+  pinMode(COL3, OUTPUT);
+  pinMode(COL4, OUTPUT);
+  
+  // Initialize the cube with all LEDs off
+  clearCube();
+}
+
+void loop() {
+  // Example pattern: Light up each layer one by one
+  for (int layer = 0; layer < 4; layer++) {
+    lightLayer(layer);
+    delay(500); // Adjust delay for speed of effect
+    clearLayer(layer);
+  }
+}
+
+// Function to clear the entire cube
+void clearCube() {
+  for (int layer = 0; layer < 4; layer++) {
+    for (int row = 0; row < 4; row++) {
+      for (int col = 0; col < 4; col++) {
+        cube[layer][row][col] = 0; // Set all to 0 (OFF)
+      }
+    }
+  }
+}
+
+// Function to light up a specific layer
+void lightLayer(int layer) {
+  // Activate the layer
+  digitalWrite(LAYER1, layer == 0 ? LOW : HIGH);
+  digitalWrite(LAYER2, layer == 1 ? LOW : HIGH);
+  digitalWrite(LAYER3, layer == 2 ? LOW : HIGH);
+  digitalWrite(LAYER4, layer == 3 ? LOW : HIGH);
+  
+  // Light up columns for the current layer
+  for (int col = 0; col < 4; col++) {
+    digitalWrite(COL1, cube[layer][0][col]);
+    digitalWrite(COL2, cube[layer][1][col]);
+    digitalWrite(COL3, cube[layer][2][col]);
+    digitalWrite(COL4, cube[layer][3][col]);
+  }
+}
+
+// Function to clear a specific layer
+void clearLayer(int layer) {
+  // Deactivate the layer
+  digitalWrite(LAYER1, HIGH);
+  digitalWrite(LAYER2, HIGH);
+  digitalWrite(LAYER3, HIGH);
+  digitalWrite(LAYER4, HIGH);
+}
